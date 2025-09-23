@@ -1,0 +1,114 @@
+{
+  "model_type": "GradientBoostingRegressor",
+  "version": "1.0",
+  "features": [
+    "bedrooms",
+    "bathrooms",
+    "sqft_living",
+    "sqft_lot",
+    "floors",
+    "waterfront",
+    "view",
+    "condition",
+    "grade",
+    "sqft_above",
+    "sqft_basement",
+    "yr_built",
+    "yr_renovated",
+    "lat",
+    "long",
+    "sqft_living15",
+    "sqft_lot15",
+    "ppltn_qty",
+    "urbn_ppltn_qty",
+    "sbrbn_ppltn_qty",
+    "farm_ppltn_qty",
+    "non_farm_qty",
+    "medn_hshld_incm_amt",
+    "medn_incm_per_prsn_amt",
+    "hous_val_amt",
+    "edctn_less_than_9_qty",
+    "edctn_9_12_qty",
+    "edctn_high_schl_qty",
+    "edctn_some_clg_qty",
+    "edctn_assoc_dgre_qty",
+    "edctn_bchlr_dgre_qty",
+    "edctn_prfsnl_qty",
+    "per_urbn",
+    "per_sbrbn",
+    "per_farm",
+    "per_non_farm",
+    "per_less_than_9",
+    "per_9_to_12",
+    "per_hsd",
+    "per_some_clg",
+    "per_assoc",
+    "per_bchlr",
+    "per_prfsnl"
+  ],
+  "n_features": 43,
+  "train_score": 0.9743349833250085,
+  "test_score": 0.8865554878543648,
+  "training_samples": 17290,
+  "best_params": {
+    "model__learning_rate": 0.1,
+    "model__max_depth": 5,
+    "model__n_estimators": 400
+  },
+  "cv_best_mae": 63997.981432560446,
+  "validation_mae": 67279.8668645202,
+  "candidates": [
+    {
+      "name": "knn",
+      "display_name": "KNeighborsRegressor",
+      "best_params": {
+        "kneighborsregressor__n_neighbors": 7,
+        "kneighborsregressor__p": 1,
+        "kneighborsregressor__weights": "distance"
+      },
+      "cv_best_mae": 79976.44047626808,
+      "validation_mae": 84493.50816711127,
+      "train_score": 0.9992357508194403,
+      "test_score": 0.7932425228366788
+    },
+    {
+      "name": "random_forest",
+      "display_name": "RandomForestRegressor",
+      "best_params": {
+        "model__max_depth": 40,
+        "model__min_samples_leaf": 1,
+        "model__n_estimators": 400
+      },
+      "cv_best_mae": 67291.64859711999,
+      "validation_mae": 70611.78146031378,
+      "train_score": 0.984019386655111,
+      "test_score": 0.8772846308930504
+    },
+    {
+      "name": "gradient_boosting",
+      "display_name": "GradientBoostingRegressor",
+      "best_params": {
+        "model__learning_rate": 0.1,
+        "model__max_depth": 5,
+        "model__n_estimators": 400
+      },
+      "cv_best_mae": 63997.981432560446,
+      "validation_mae": 67279.8668645202,
+      "train_score": 0.9743349833250085,
+      "test_score": 0.8865554878543648
+    },
+    {
+      "name": "hist_gradient_boosting",
+      "display_name": "HistGradientBoostingRegressor",
+      "best_params": {
+        "model__learning_rate": 0.1,
+        "model__max_depth": null,
+        "model__max_leaf_nodes": 63
+      },
+      "cv_best_mae": 65515.68256959484,
+      "validation_mae": 68189.14212811421,
+      "train_score": 0.9504042971092959,
+      "test_score": 0.8865796550239848
+    }
+  ]
+}
