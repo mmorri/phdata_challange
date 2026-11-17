@@ -145,9 +145,20 @@ class PredictionService:
         settings = self.settings
         model_path = resolve_path(settings.model_dir, settings.model_filename)
         LOGGER.info("Loading model from %s", model_path)
-        with model_path.open("rb") as file:
-            model = pickle.load(file)
-        return model
+        # Pickle can execute arbitrary code: refuse artifacts whose SHA-256
+        # does not match MODEL_SHA256 when it is pinned (set it in CI after
+        # training). Regenerate artifacts with create_model.py otherwise.
+        import hashlib
+        import io
+        import os
+
+        data = model_path.read_bytes()
+        expected = os.environ.get("MODEL_SHA256", "")
+        if expected:
+            actual = hashlib.sha256(data).hexdigest()
+            if actual != expected.lower():
+                raise ValueError(f"{model_path.name}: SHA-256 mismatch — refusing to unpickle")
+        return pickle.load(io.BytesIO(data))
 
     def _load_model_features(self) -> Tuple[str, ...]:
         settings = self.settings
