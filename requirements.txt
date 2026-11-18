@@ -1,11 +1,13 @@
-fastapi==0.103.1
+fastapi==0.163.2
+starlette==1.10.0
 uvicorn[standard]==0.23.2
 pandas==2.1.1
-scikit-learn==1.3.1
+scikit-learn==1.5.0
 numpy==1.26.0
-pydantic==1.10.12
-python-dotenv==1.0.0
+pydantic==2.14.3
+pydantic-settings==2.16.3
+python-dotenv==1.2.2
 requests>=2.32.4  # >=2.32.4 fixes CVE-2024-47081 (.netrc credential leak)
-pytest==7.4.2
-httpx==0.24.1
+pytest==9.0.3
+httpx==0.27.2
 matplotlib==3.7.2

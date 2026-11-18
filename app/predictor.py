@@ -80,12 +80,12 @@ class PredictionService:
         return cls._instance
 
     def predict(self, payload: HouseFeatures) -> PredictionResponse:
-        payload_dict = payload.dict()
+        payload_dict = payload.model_dump()
         return self._run_inference(payload_dict)
 
     def predict_minimal(self, payload: MinimalHouseFeatures) -> PredictionResponse:
         payload_dict = self.house_feature_defaults.copy()
-        payload_values = payload.dict()
+        payload_values = payload.model_dump()
         zipcode = payload_values["zipcode"]
         payload_dict.update(payload_values)
         payload_dict["zipcode"] = zipcode

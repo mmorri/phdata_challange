@@ -5,11 +5,13 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     """Application configuration sourced from environment variables."""
+
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     model_dir: Path = Path("./model")
     model_filename: str = "model.pkl"
@@ -20,10 +22,6 @@ class Settings(BaseSettings):
     api_title: str = "Sound Realty Price Service"
     api_version: str = "1.0.0"
     api_description: str = "REST API for house price predictions."
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
 
 @lru_cache()

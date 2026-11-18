@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 
 
 class HouseFeatures(BaseModel):
@@ -25,7 +25,8 @@ class HouseFeatures(BaseModel):
     sqft_living15: int = Field(..., ge=0)
     sqft_lot15: int = Field(..., ge=0)
 
-    @validator("zipcode")
+    @field_validator("zipcode")
+    @classmethod
     def zipcode_to_string(cls, value: str) -> str:
         return value.zfill(5)
 
@@ -40,7 +41,8 @@ class MinimalHouseFeatures(BaseModel):
     sqft_basement: int = Field(..., ge=0)
     zipcode: str
 
-    @validator("zipcode")
+    @field_validator("zipcode")
+    @classmethod
     def minimal_zipcode(cls, value: str) -> str:
         return value.zfill(5)
 
